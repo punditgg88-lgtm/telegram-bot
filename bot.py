@@ -1,16 +1,15 @@
+import os
 from telegram.ext import Updater, CommandHandler
 
+# Ambil token dari environment (Secrets)
+TOKEN = os.getenv("BOT_TOKEN")
+
 def start(update, context):
-    update.message.reply_text("Halo! Bot sudah jalan 🚀")
+    update.message.reply_text("Halo, bot sudah jalan!")
 
-def main():
-    # Ganti TOKEN_BOT dengan token bot kamu dari BotFather
-    updater = Updater("TOKEN_BOT", use_context=True)
-    dp = updater.dispatcher
-    dp.add_handler(CommandHandler("start", start))
+updater = Updater(TOKEN, use_context=True)
+dp = updater.dispatcher
+dp.add_handler(CommandHandler("start", start))
 
-    updater.start_polling()
-    updater.idle()
-
-if __name__ == '__main__':
-    main()
+updater.start_polling()
+updater.idle()
